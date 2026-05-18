@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>국립국어원 - 국어 정보의 모든 것</title>
+  <meta name="description" content="국립국어원 공식 웹사이트. 표준국어대사전, 우리말샘, 한국어교육, 어문규범 등 다양한 국어 정보를 제공합니다.">
+  <!-- Pretendard 웹폰트 -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <!-- Inter 폰트 (검색창) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================================
+       건너뛰기 링크 (접근성 - KWCAG 2.2)
+       ================================ -->
+  <a href="#download-section" class="skip-link" data-i18n="skip-main">본문 내용 바로가기</a>
+  <a href="#gnb" class="skip-link" data-i18n="skip-menu">주요메뉴 바로가기</a>
+
+  <!-- ================================
+       모바일 래퍼 (402px 기준)
+       ================================ -->
+  <div class="mobile-wrapper">
+
+    <!-- ==========================================
+         섹션 1: 헤더 (Top Menu Tab + 검색바)
+         Figma: 388:490 Section > 388:491 Top Menu Tab
+         ========================================== -->
+    <header class="site-header" role="banner">
+
+      <!-- TOP MENU TAB: 로고 + 기관명 | 언어전환 + 메뉴아이콘 -->
+      <div class="top-menu-tab" id="gnb">
+        <!-- 로고 + 기관명 그룹 -->
+        <div class="logo-and-name">
+          <a href="/" class="logo-link" aria-label="국립국어원 홈으로 이동">
+            <!-- 국립국어원 메인 로고 -->
+            <span class="logo-mark" aria-hidden="true">
+              <img src="메인로고.png" alt="국립국어원 로고" class="main-logo-img">
+            </span>
+          </a>
+          <div class="org-info" aria-label="기관 정보">
+            <span class="org-name-ko" lang="ko" data-i18n="org-name">국립국어원</span>
+            <span class="org-name-en" lang="en">National Institute of Korean Language</span>
+          </div>
+        </div>
+
+        <!-- 우측: 언어전환 + 메뉴 버튼 -->
+        <div class="menu-and-lang">
+          <!-- 언어전환 스위처 -->
+          <div class="language-switcher" aria-label="언어 선택">
+            <button id="lang-toggle-btn" class="lang-btn lang-active" aria-pressed="true" aria-label="한국어 선택됨" data-lang="ko" style="display: flex; align-items: center; gap: 4px; padding-right: 8px;">
+              <span id="lang-toggle-text">한글</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 1l4 4-4 4"></path>
+                <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                <path d="M7 23l-4-4 4-4"></path>
+                <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+              </svg>
+            </button>
+          </div>
+          <!-- 전체메뉴 버튼 -->
+          <button class="menu-icon-btn" id="menu-toggle"
+                  aria-label="전체 메뉴 열기" aria-expanded="false" aria-controls="fullscreen-menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 검색바 -->
+      <div class="search-tab" role="search">
+        <form action="search.html" method="get" class="search-form">
+          <label for="search-input" class="sr-only">검색어</label>
+          <input
+            type="search"
+            id="search-input"
+            name="q"
+            class="search-input"
+            data-i18n-placeholder="search-placeholder"
+            placeholder="검색어를 입력하세요"
+            autocomplete="off"
+            aria-label="검색어를 입력하세요"
+          >
+          <button type="submit" class="search-btn" aria-label="검색">
+            <!-- 검색 아이콘 SVG -->
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="8.5" cy="8.5" r="6.5" stroke="#000B16" stroke-width="1.8"/>
+              <path d="M13.5 13.5L18 18" stroke="#000B16" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </header>
+    <!-- /섹션 1 END -->
+
+
+    <!-- ==========================================
+         섹션 2: 히어로 + 자료 다운로드 카드
+         Figma: 388:531 Hero Section + 388:533 Section
+         ========================================== -->
+    <main id="main-content">
+
+      <!-- 히어로 이미지 -->
+      <section class="hero-section" aria-label="메인 배너">
+        <div class="hero-image-wrap">
+          <!-- 슬라이더 컨테이너 -->
+          <div class="hero-slider-container">
+            <div class="hero-slider-track" id="hero-slider-track" aria-live="off">
+              <!-- 이미지 1 -->
+              <div class="hero-slide">
+                <img src="히어로이미지1.png" alt="메인 배너 이미지 1" class="hero-img">
+              </div>
+              <!-- 이미지 2 -->
+              <div class="hero-slide">
+                <img src="히어로이미지2.png" alt="메인 배너 이미지 2" class="hero-img">
+              </div>
+              <!-- 이미지 3 -->
+              <div class="hero-slide">
+                <img src="히어로이미지3.jpg" alt="메인 배너 이미지 3" class="hero-img">
+              </div>
+              <!-- 이미지 4 -->
+              <div class="hero-slide">
+                <img src="히어로이미지4.jpg" alt="메인 배너 이미지 4" class="hero-img">
+              </div>
+              <!-- 이미지 5 -->
+              <div class="hero-slide">
+                <img src="히어로이미지5.png" alt="메인 배너 이미지 5" class="hero-img">
+              </div>
+              <!-- 이미지 6 -->
+              <div class="hero-slide">
+                <img src="히어로이미지6.jpg" alt="메인 배너 이미지 6" class="hero-img">
+              </div>
+              <!-- 이미지 7 -->
+              <div class="hero-slide">
+                <img src="히어로이미지7.jpg" alt="메인 배너 이미지 7" class="hero-img">
+              </div>
+              <!-- 이미지 8 -->
+              <div class="hero-slide">
+                <img src="히어로이미지8.jpg" alt="메인 배너 이미지 8" class="hero-img">
+              </div>
+            </div>
+
+            <!-- 수동 조작 컨트롤 (이전, 재생/정지, 다음) -->
+            <div class="hero-controls" aria-label="메인 배너 조작">
+              <button type="button" class="hero-control-btn hero-prev" id="hero-prev" aria-label="이전 이미지">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <button type="button" class="hero-control-btn hero-pause" id="hero-toggle" aria-label="자동 재생 정지" data-state="playing">
+                <svg class="icon-pause" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                <svg class="icon-play" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </button>
+              <button type="button" class="hero-control-btn hero-next" id="hero-next" aria-label="다음 이미지">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /섹션 2-히어로 END -->
+
+
+      <!-- 자료 다운로드 카드 섹션 -->
+      <!-- Figma: 388:533 Section > Box Container (2행 × 2열 카드) -->
+      <section id="download-section" class="download-section" aria-labelledby="download-heading" tabindex="-1">
+        <h2 id="download-heading" class="sr-only" data-i18n="download-heading">주요 자료 다운로드</h2>
+
+        <!-- 1행: 자료 저장 | 종합 사전 -->
+        <div class="box-container" role="list">
+          <article class="download-card download-card--linked" role="listitem"
+                   aria-label="자료 저장 카드 - 자료 검색 페이지로 이동">
+            <a href="search.html" class="download-card-link" aria-label="자료저장 - 자료 검색 페이지로 이동">
+              <div class="download-card-inner">
+                <div class="card-category-label" data-i18n="cat-save">자료<br>저장</div>
+                <ul class="card-links" aria-label="자료 저장 하위 메뉴">
+                  <li><span class="card-link" data-i18n="link-save-1">조사 자료 저장</span></li>
+                  <li><span class="card-link" data-i18n="link-save-2">언어정보나눔터</span></li>
+                  <li><span class="card-link" data-i18n="link-save-3">모두의 말뭉치</span></li>
+                  <li><span class="card-link" data-i18n="link-save-4">인공지능 데이터실</span></li>
+                </ul>
+              </div>
+            </a>
+          </article>
+
+          <article class="download-card" role="listitem" tabindex="0" aria-label="종합 사전 카드">
+            <div class="download-card-inner">
+              <div class="card-category-label" data-i18n="cat-dict">종합<br>사전</div>
+              <ul class="card-links" aria-label="종합 사전 하위 메뉴">
+                <li><a href="#" class="card-link" data-i18n="link-dict-1">표준국어대사전</a></li>
+                <li><a href="#" class="card-link" data-i18n="link-dict-2">우리말샘</a></li>
+                <li><a href="#" class="card-link" data-i18n="link-dict-3">지역어 종합 정보</a></li>
+                <li><a href="#" class="card-link" data-i18n="link-dict-4">외래어사전</a></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <!-- 2행: 수어-점자 | 어문 규범 -->
+        <div class="box-container box-container--row2" role="list">
+          <article class="download-card" role="listitem" tabindex="0" aria-label="수어·점자 카드">
+            <div class="download-card-inner">
+              <div class="card-category-label" data-i18n="cat-sign">수어·<br>점자</div>
+              <ul class="card-links" aria-label="수어·점자 하위 메뉴">
+                <li><a href="#" class="card-link" data-i18n="link-sign-1">한국수어사전</a></li>
+                <li><a href="#" class="card-link" data-i18n="link-sign-2">점자 종합정보</a></li>
+                <li><a href="#" class="card-link" data-i18n="link-sign-3">수어와 만남</a></li>
+                <li><a href="#" class="card-link" data-i18n="link-sign-4">수어 교육 영상</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="download-card" role="listitem" tabindex="0" aria-label="어문 규범 카드">
+            <div class="download-card-inner">
+              <div class="card-category-label" data-i18n="cat-norm">어문<br>규범</div>
+              <ul class="card-links" aria-label="어문 규범 하위 메뉴">
+                <li><a href="#" class="card-link" data-i18n="link-norm-1">한글 맞춤법</a></li>
+                <li><a href="#" class="card-link" data-i18n="link-norm-2">표준어 규정</a></li>
+                <li><a href="#" class="card-link" data-i18n="link-norm-3">외래어 표기법</a></li>
+                <li><a href="#" class="card-link" data-i18n="link-norm-4">자주 틀리는 문법</a></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- /섹션 2 END -->
+
+
+      <!-- ==========================================
+           섹션 3: 주제 카드 + 공지 스크롤
+           Figma: 388:540 Section (Theme Cards) + 388:546 Scroll Container
+           ========================================== -->
+
+      <!-- 주제 카드 목록 -->
+      <section class="theme-section" aria-labelledby="theme-heading">
+        <h2 id="theme-heading" class="sr-only" data-i18n="theme-heading">주제별 서비스</h2>
+        <div class="section-container" role="list">
+
+          <!-- 교육 -->
+          <div class="theme-card" role="listitem" tabindex="0">
+            <a href="#" class="theme-card-inner" aria-label="교육 - 국어문화학교, 한국어교원자격증, 온라인 전시관, 프로그램 신청 안내">
+              <span class="theme-label" data-i18n="theme-edu">교육</span>
+              <span class="theme-arrow" aria-hidden="true">▶</span>
+            </a>
+            <!-- 호버 시 펼쳐지는 하위 메뉴 -->
+            <div class="theme-submenu" aria-label="교육 하위 메뉴">
+              <ul>
+                <li><a href="#" data-i18n="edu-1">국어문화학교</a></li>
+                <li><a href="#" data-i18n="edu-2">한국어교원자격증</a></li>
+                <li><a href="#" data-i18n="edu-3">온라인 전시관</a></li>
+                <li><a href="#" data-i18n="edu-4">프로그램 신청 안내</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 참여 -->
+          <div class="theme-card" role="listitem" tabindex="0">
+            <a href="#" class="theme-card-inner" aria-label="참여 - 온라인 가나다(상담), 국민신문고, 부패행위 신고, 민원 및 제안">
+              <span class="theme-label" data-i18n="theme-part">참여</span>
+              <span class="theme-arrow" aria-hidden="true">▶</span>
+            </a>
+            <div class="theme-submenu" aria-label="참여 하위 메뉴">
+              <ul>
+                <li><a href="#" data-i18n="part-1">온라인 가나다(상담)</a></li>
+                <li><a href="#" data-i18n="part-2">국민신문고</a></li>
+                <li><a href="#" data-i18n="part-3">부패행위 신고</a></li>
+                <li><a href="#" data-i18n="part-4">민원 및 제안</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 개선 -->
+          <div class="theme-card" role="listitem" tabindex="0">
+            <a href="#" class="theme-card-inner" aria-label="개선 - 민원처리현황, 서식 자료실, 디지털 소통 창구, 웹 접근성 가이드">
+              <span class="theme-label" data-i18n="theme-imp">개선</span>
+              <span class="theme-arrow" aria-hidden="true">▶</span>
+            </a>
+            <div class="theme-submenu" aria-label="개선 하위 메뉴">
+              <ul>
+                <li><a href="#" data-i18n="imp-1">민원처리현황</a></li>
+                <li><a href="#" data-i18n="imp-2">서식 자료실</a></li>
+                <li><a href="#" data-i18n="imp-3">디지털 소통 창구</a></li>
+                <li><a href="#" data-i18n="imp-4">웹 접근성 가이드</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 지원 -->
+          <div class="theme-card" role="listitem" tabindex="0">
+            <a href="#" class="theme-card-inner" aria-label="지원 - 표준어 규정 찾기, 국어 문화 소식지, 찾아가는 서비스, 이달의 전시 테마">
+              <span class="theme-label" data-i18n="theme-sup">지원</span>
+              <span class="theme-arrow" aria-hidden="true">▶</span>
+            </a>
+            <div class="theme-submenu" aria-label="지원 하위 메뉴">
+              <ul>
+                <li><a href="#" data-i18n="sup-1">표준어 규정 찾기</a></li>
+                <li><a href="#" data-i18n="sup-2">국어 문화 소식지</a></li>
+                <li><a href="#" data-i18n="sup-3">찾아가는 서비스</a></li>
+                <li><a href="#" data-i18n="sup-4">이달의 전시 테마</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 공지/뉴스 스크롤 컨테이너 -->
+      <!-- Figma: 388:546 Scroll Container (오토 딜레이 컴포넌트, 3초 간격 자동 슬라이드) -->
+      <section class="news-scroll-section" aria-labelledby="news-heading">
+        <div class="news-scroll-wrap" id="news-scroll">
+          <h2 id="news-heading" class="sr-only" data-i18n="news-heading">주요 공지 및 소식</h2>
+
+          <!-- 슬라이드 트랙 -->
+          <div class="news-track" role="list" aria-live="polite" aria-atomic="true">
+
+            <!-- 슬라이드 1: 공지 -->
+            <div class="news-slide" role="listitem">
+              <a href="#" class="news-item">
+                <span class="news-badge" data-i18n="news-badge-1">공지</span>
+                <span class="news-title" data-i18n="news-title-1">2026년 국어 문화 학교 여름 프로그램 신청 안내</span>
+                <span class="news-date">2026.05.10</span>
+              </a>
+              <a href="#" class="news-item">
+                <span class="news-badge" data-i18n="news-badge-1">공지</span>
+                <span class="news-title" data-i18n="news-title-1-1">제36회 한글 잔치 및 글짓기 대회 안내</span>
+                <span class="news-date">2026.05.09</span>
+              </a>
+              <a href="#" class="news-item">
+                <span class="news-badge" data-i18n="news-badge-1">공지</span>
+                <span class="news-title" data-i18n="news-title-1-2">2026년 하반기 국어 전문 교육 과정 수강생 모집</span>
+                <span class="news-date">2026.05.07</span>
+              </a>
+            </div>
+
+            <!-- 슬라이드 2: 소식 -->
+            <div class="news-slide" role="listitem">
+              <a href="#" class="news-item">
+                <span class="news-badge" data-i18n="news-badge-2">소식</span>
+                <span class="news-title" data-i18n="news-title-2">표준국어대사전 신규 어휘 3,200건 등재 완료</span>
+                <span class="news-date">2026.05.08</span>
+              </a>
+              <a href="#" class="news-item">
+                <span class="news-badge" data-i18n="news-badge-2">소식</span>
+                <span class="news-title" data-i18n="news-title-2-1">우리말샘 2026년도 상반기 시민 참여 어휘 선정 결과</span>
+                <span class="news-date">2026.05.05</span>
+              </a>
+              <a href="#" class="news-item">
+                <span class="news-badge" data-i18n="news-badge-2">소식</span>
+                <span class="news-title" data-i18n="news-title-2-2">AI 한국어 학습용 말뭉치 데이터 1억 어절 추가 공개</span>
+                <span class="news-date">2026.05.01</span>
+              </a>
+            </div>
+
+            <!-- 슬라이드 3: 알림 -->
+            <div class="news-slide" role="listitem">
+              <a href="#" class="news-item">
+                <span class="news-badge" data-i18n="news-badge-3">알림</span>
+                <span class="news-title" data-i18n="news-title-3">온라인 가나다 서비스 개편 안내 (5월 15일~)</span>
+                <span class="news-date">2026.05.06</span>
+              </a>
+              <a href="#" class="news-item">
+                <span class="news-badge" data-i18n="news-badge-3">알림</span>
+                <span class="news-title" data-i18n="news-title-3-1">웹 접근성 강화를 위한 음성 지원 서비스 시범 운영</span>
+                <span class="news-date">2026.05.03</span>
+              </a>
+              <a href="#" class="news-item">
+                <span class="news-badge" data-i18n="news-badge-3">알림</span>
+                <span class="news-title" data-i18n="news-title-3-2">지역어 종합 정보 시스템 유지보수 안내 (5/20)</span>
+                <span class="news-date">2026.04.28</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- 슬라이드 인디케이터 (pill dots) -->
+          <div class="news-indicators" role="tablist" aria-label="공지 슬라이드 탐색">
+            <button class="news-dot active" role="tab" aria-selected="true" aria-label="공지 1번" data-index="0"></button>
+            <button class="news-dot" role="tab" aria-selected="false" aria-label="공지 2번" data-index="1"></button>
+            <button class="news-dot" role="tab" aria-selected="false" aria-label="공지 3번" data-index="2"></button>
+          </div>
+        </div>
+      </section>
+      <!-- /섹션 3 END -->
+
+    </main>
+
+
+    <!-- ==========================================
+         섹션 4: 푸터
+         Figma: 388:547 Section > 388:548 Footer
+         ========================================== -->
+    <footer class="site-footer" role="contentinfo">
+
+      <!-- SNS 아이콘 + 링크 행 -->
+      <div class="footer-top">
+        <!-- SNS 아이콘 그룹 -->
+        <div class="social-icons" aria-label="소셜미디어 링크">
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer"
+             class="social-link" aria-label="유튜브 (새 탭에서 열림)">
+            <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M19.6 2.19C19.37 1.37 18.72 0.72 17.9 0.49C16.38 0.07 10 0.07 10 0.07C10 0.07 3.62 0.07 2.1 0.49C1.28 0.72 0.63 1.37 0.4 2.19C-0.02 3.71-0.02 7 -0.02 7C-0.02 7-0.02 10.29 0.4 11.81C0.63 12.63 1.28 13.28 2.1 13.51C3.62 13.93 10 13.93 10 13.93C10 13.93 16.38 13.93 17.9 13.51C18.72 13.28 19.37 12.63 19.6 11.81C20.02 10.29 20.02 7 20.02 7C20.02 7 20.02 3.71 19.6 2.19ZM8 10V4L13.2 7L8 10Z" fill="#000B16"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"
+             class="social-link" aria-label="인스타그램 (새 탭에서 열림)">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="1" y="1" width="14" height="14" rx="4" stroke="#000B16" stroke-width="1.5"/>
+              <circle cx="8" cy="8" r="3" stroke="#000B16" stroke-width="1.5"/>
+              <circle cx="11.5" cy="4.5" r="0.75" fill="#000B16"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"
+             class="social-link" aria-label="페이스북 (새 탭에서 열림)">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 1H10C8.34 1 7 2.34 7 4V6H5V9H7V15H10V9H12L13 6H10V4C10 3.45 10.45 3 11 3H12V1Z" stroke="#000B16" stroke-width="1.5" fill="none"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+             class="social-link" aria-label="트위터/X (새 탭에서 열림)">
+            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M1 1L6 8M15 1L10 8M6 8L5 13L8 10L11 13L10 8M6 8L10 8" stroke="#000B16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- 푸터 링크 -->
+        <nav class="footer-links" aria-label="하단 네비게이션">
+          <a href="#" class="footer-link" data-i18n="footer-privacy">개인정보처리방침</a>
+          <span class="footer-divider" aria-hidden="true">|</span>
+          <a href="#" class="footer-link" data-i18n="footer-copyright">저작권정책</a>
+          <span class="footer-divider" aria-hidden="true">|</span>
+          <a href="#" class="footer-link" data-i18n="footer-terms">이용약관</a>
+          <span class="footer-divider" aria-hidden="true">|</span>
+          <a href="#" class="footer-link" data-i18n="footer-sitemap">사이트맵</a>
+        </nav>
+      </div>
+
+      <!-- 주소 + 인증 로고 -->
+      <div class="address-container">
+        <address class="address-info">
+          <p data-i18n="footer-address">우 30609 세종특별자치시 한누리대로 402</p>
+          <p>TEL: 044-690-9114 | FAX: 044-690-9009</p>
+        </address>
+        <div class="cert-logos" aria-label="웹 인증 마크">
+          <!-- WA 인증 마크 -->
+          <div class="cert-mark" title="한국형 웹 콘텐츠 접근성 지침 2.2 (KWCAG 2.2) 준수" aria-label="웹 접근성 인증 마크">
+            <span class="cert-text">WA</span>
+          </div>
+          <!-- 품질 인증 마크 -->
+          <div class="cert-mark cert-mark--quality" title="공공 웹사이트 품질 인증" aria-label="웹사이트 품질 인증 마크">
+            <span class="cert-text" data-i18n="cert-quality">품질</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 저작권 -->
+      <div class="copyright-info">
+        <p class="copyright-text">
+          COPYRIGHTⓒ National Institute of Korean Language ALL RIGHTS RESERVED.
+        </p>
+      </div>
+
+    </footer>
+    <!-- /섹션 4 END -->
+
+  </div>
+  <!-- /mobile-wrapper END -->
+
+  <!-- ================================
+       오프캔버스 전체 메뉴
+       ================================ -->
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true" tabindex="-1"></div>
+  <aside class="fullscreen-menu" id="fullscreen-menu" aria-hidden="true" aria-label="전체 메뉴">
+    <div class="menu-header">
+      <h2 class="menu-title">전체 메뉴</h2>
+      <button class="menu-close-btn" id="menu-close" aria-label="메뉴 닫기">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="menu-body">
+      <!-- 사전 그룹 -->
+      <div class="menu-group">
+        <h3 class="menu-group-title">국어 사전</h3>
+        <ul class="sidebar-nav">
+          <li><a href="#" class="sidebar-link">표준국어대사전</a></li>
+          <li><a href="#" class="sidebar-link">우리말샘</a></li>
+          <li><a href="#" class="sidebar-link">한국수어사전</a></li>
+        </ul>
+      </div>
+      
+      <!-- 자료실 그룹 -->
+      <div class="menu-group">
+        <h3 class="menu-group-title">자료실</h3>
+        <ul class="sidebar-nav">
+          <li><a href="search.html" class="sidebar-link">통합 자료 검색</a></li>
+          <li><a href="#" class="sidebar-link">어문 규범 검색</a></li>
+          <li><a href="#" class="sidebar-link">모두의 말뭉치</a></li>
+        </ul>
+      </div>
+      
+      <!-- 참여 그룹 -->
+      <div class="menu-group">
+        <h3 class="menu-group-title">소통·참여</h3>
+        <ul class="sidebar-nav">
+          <li><a href="#" class="sidebar-link">공지 및 새소식</a></li>
+          <li><a href="#" class="sidebar-link">온라인 가나다 (상담)</a></li>
+          <li><a href="#" class="sidebar-link">국어문화학교</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>

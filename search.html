@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>자료 검색 - 국립국어원</title>
+  <meta name="description" content="국립국어원 자료 검색 페이지. 자료명, 날짜, 유형으로 원하는 자료를 찾아보세요.">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="search.css">
+</head>
+<body>
+
+  <!-- 건너뛰기 링크 (KWCAG 2.2) -->
+  <a href="#search-main" class="skip-link">본문 바로가기</a>
+
+  <div class="mobile-wrapper">
+
+    <!-- =============================================
+         섹션 1: 헤더
+         Figma: 388:582 Section
+         배경: #B0D6FF (rgb(176, 214, 255))
+         구성: 로고+기관명(좌) / 자료실+닫기(우) + 검색바
+         ============================================= -->
+    <header class="search-header" role="banner">
+
+      <!-- 상단 탭: 로고 + 기관명 | 자료실 + 닫기 -->
+      <div class="search-top-bar">
+
+        <!-- 좌: 로고 + 기관명 -->
+        <a href="index.html" class="logo-link" aria-label="국립국어원 홈으로 이동">
+          <span class="logo-mark" aria-hidden="true">
+            <img src="메인로고.png" alt="국립국어원 로고" class="main-logo-img">
+          </span>
+          <span class="org-info">
+            <span class="org-name-ko">국립국어원</span>
+            <span class="org-name-en">National Institute of Korean Language</span>
+          </span>
+        </a>
+
+        <!-- 우: 자료실 + 메뉴 버튼 -->
+        <div class="search-header-right">
+          <!-- 자료실 메뉴 영역 -->
+          <div class="resource-room-badge">
+            <span class="resource-room-text">자료실</span>
+          </div>
+          <!-- 전체메뉴 버튼 -->
+          <button class="menu-icon-btn" id="menu-toggle"
+                  aria-label="전체 메뉴 열기" aria-expanded="false" aria-controls="fullscreen-menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 검색 입력창 -->
+      <!-- Figma: 388:622 Input (자료명 입력 대기 variant) -->
+      <div class="search-input-wrap" role="search">
+        <form action="#" method="get" id="search-form" class="search-form-row">
+          <label for="keyword-input" class="sr-only">자료명 입력</label>
+          <input
+            type="search"
+            id="keyword-input"
+            name="q"
+            class="keyword-input"
+            placeholder="자료명을 입력해 주세요"
+            autocomplete="off"
+            aria-label="자료명을 입력해 주세요"
+          >
+          <!-- 검색 실행 버튼 -->
+          <button type="submit" class="search-exec-btn" aria-label="검색 실행">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
+                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="8.5" stroke="#000B16" stroke-width="2"/>
+              <path d="M18.5 18.5L25 25" stroke="#000B16"
+                    stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+    </header>
+    <!-- /섹션 1 END -->
+
+
+    <!-- =============================================
+         섹션 2: 자료 날짜 필터
+         Figma: 388:621 Section > 388:623 Date container
+         구성: "자료 날짜" 레이블 + 시작일 ~ 종료일 입력
+         ============================================= -->
+    <main id="search-main">
+      <section class="filter-section date-filter-section"
+               aria-labelledby="date-filter-heading">
+
+        <div class="filter-inner">
+          <!-- 레이블: "자료 날짜" (Inter Medium 33px → 반응형 축소) -->
+          <h2 id="date-filter-heading" class="filter-label">자료 날짜</h2>
+
+          <!-- 날짜 입력 행: [시작일] ~ [종료일] -->
+          <div class="date-entry" role="group" aria-label="자료 날짜 범위 선택">
+
+            <!-- 시작 날짜 -->
+            <div class="date-input-container">
+              <label for="date-from" class="sr-only">시작 날짜</label>
+              <input
+                type="date"
+                id="date-from"
+                name="date_from"
+                class="date-input"
+                aria-label="시작 날짜 입력"
+              >
+            </div>
+
+            <!-- 구분자 ~ -->
+            <span class="date-tilde" aria-hidden="true">~</span>
+
+            <!-- 종료 날짜 -->
+            <div class="date-input-container">
+              <label for="date-to" class="sr-only">종료 날짜</label>
+              <input
+                type="date"
+                id="date-to"
+                name="date_to"
+                class="date-input"
+                aria-label="종료 날짜 입력"
+              >
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+      <!-- /섹션 2 END -->
+
+
+      <!-- =============================================
+           섹션 3: 자료 유형 필터
+           Figma: 388:635 Section > 388:637 Resource type tab
+           구성: "자료 유형" 레이블
+                 + 1행: 심의 자료 / 규정 자료 / 용례 자료
+                 + 2행: 외래 자료 / 수어 자료 / 전체
+           버튼: 흰색 배경 + 2px #000B16 테두리
+                 선택 시: 배경 #000B16, 텍스트 흰색
+           ============================================= -->
+      <section class="filter-section type-filter-section"
+               aria-labelledby="type-filter-heading">
+
+        <div class="filter-inner">
+          <!-- 레이블: "자료 유형" -->
+          <h2 id="type-filter-heading" class="filter-label">자료 유형</h2>
+
+          <!-- 버튼 그리드: 2행 × 3열 -->
+          <div class="resource-type-tab" role="group" aria-label="자료 유형 선택">
+
+            <!-- 1행 -->
+            <div class="type-btn-row">
+              <button type="button" class="type-btn" aria-pressed="false"
+                      data-type="심의" id="type-btn-review">심의 자료</button>
+              <button type="button" class="type-btn" aria-pressed="false"
+                      data-type="규정" id="type-btn-rule">규정 자료</button>
+              <button type="button" class="type-btn" aria-pressed="false"
+                      data-type="용례" id="type-btn-usage">용례 자료</button>
+            </div>
+
+            <!-- 2행 -->
+            <div class="type-btn-row">
+              <button type="button" class="type-btn" aria-pressed="false"
+                      data-type="외래" id="type-btn-foreign">외래 자료</button>
+              <button type="button" class="type-btn" aria-pressed="false"
+                      data-type="수어" id="type-btn-sign">수어 자료</button>
+              <button type="button" class="type-btn type-btn--all" aria-pressed="false"
+                      data-type="전체" id="type-btn-all">전체</button>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+      <!-- /섹션 3 END -->
+
+
+      <!-- =============================================
+           섹션 4: 검색 결과 목록
+           Figma: 388:646 Section > 388:647 Container
+           구성: 검색 결과 아이템 리스트 (제목, 날짜, 유형 태그)
+                 - 결과 없을 때 안내 메시지
+           ============================================= -->
+      <section class="results-section" aria-labelledby="results-heading"
+               aria-live="polite" aria-atomic="false">
+
+        <div class="results-inner">
+          <h2 id="results-heading" class="sr-only">검색 결과</h2>
+
+          <!-- 결과 카운트 -->
+          <div class="results-count" id="results-count" aria-live="polite">
+            <!-- JS가 채움 -->
+          </div>
+
+          <!-- 결과 목록 -->
+          <ul class="results-list" id="results-list" role="list">
+            <!-- 초기: 검색 전 안내 -->
+            <li class="result-empty" id="result-empty">
+              <div class="empty-icon" aria-hidden="true">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="21" cy="21" r="14" stroke="#000B16"
+                          stroke-width="2" opacity="0.25"/>
+                  <path d="M31 31L42 42" stroke="#000B16"
+                        stroke-width="2.5" stroke-linecap="round" opacity="0.25"/>
+                </svg>
+              </div>
+              <p class="empty-message">검색어를 입력하고<br>자료를 찾아보세요</p>
+            </li>
+          </ul>
+
+          <!-- 페이지네이션 (JS가 동적 생성) -->
+          <nav class="pagination" id="pagination" aria-label="검색 결과 페이지 이동"></nav>
+
+          <!-- 실제 결과 아이템 템플릿 (JS가 동적 생성) -->
+          <!-- 아이템 구조 예시:
+          <li class="result-item" role="listitem">
+            <a href="#" class="result-link">
+              <div class="result-meta">
+                <span class="result-type-badge">규정 자료</span>
+                <span class="result-date">2026.04.15</span>
+              </div>
+              <h3 class="result-title">표준어 규정 개정안 심의 자료</h3>
+            </a>
+          </li>
+          -->
+
+        </div>
+
+      </section>
+      <!-- /섹션 4 END -->
+
+    </main>
+
+    <!-- ==========================================
+         섹션 5: 푸터
+         ========================================== -->
+    <footer class="site-footer" role="contentinfo">
+      <!-- SNS 아이콘 + 링크 행 -->
+      <div class="footer-top">
+        <!-- SNS 아이콘 그룹 -->
+        <div class="social-icons" aria-label="소셜미디어 링크">
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer"
+             class="social-link" aria-label="유튜브 (새 탭에서 열림)">
+            <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M19.6 2.19C19.37 1.37 18.72 0.72 17.9 0.49C16.38 0.07 10 0.07 10 0.07C10 0.07 3.62 0.07 2.1 0.49C1.28 0.72 0.63 1.37 0.4 2.19C-0.02 3.71-0.02 7 -0.02 7C-0.02 7-0.02 10.29 0.4 11.81C0.63 12.63 1.28 13.28 2.1 13.51C3.62 13.93 10 13.93 10 13.93C10 13.93 16.38 13.93 17.9 13.51C18.72 13.28 19.37 12.63 19.6 11.81C20.02 10.29 20.02 7 20.02 7C20.02 7 20.02 3.71 19.6 2.19ZM8 10V4L13.2 7L8 10Z" fill="#000B16"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"
+             class="social-link" aria-label="인스타그램 (새 탭에서 열림)">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="1" y="1" width="14" height="14" rx="4" stroke="#000B16" stroke-width="1.5"/>
+              <circle cx="8" cy="8" r="3" stroke="#000B16" stroke-width="1.5"/>
+              <circle cx="11.5" cy="4.5" r="0.75" fill="#000B16"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"
+             class="social-link" aria-label="페이스북 (새 탭에서 열림)">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 1H10C8.34 1 7 2.34 7 4V6H5V9H7V15H10V9H12L13 6H10V4C10 3.45 10.45 3 11 3H12V1Z" stroke="#000B16" stroke-width="1.5" fill="none"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+             class="social-link" aria-label="트위터/X (새 탭에서 열림)">
+            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M1 1L6 8M15 1L10 8M6 8L5 13L8 10L11 13L10 8M6 8L10 8" stroke="#000B16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- 푸터 링크 -->
+        <nav class="footer-links" aria-label="하단 네비게이션">
+          <a href="#" class="footer-link">개인정보처리방침</a>
+          <span class="footer-divider" aria-hidden="true">|</span>
+          <a href="#" class="footer-link">저작권정책</a>
+          <span class="footer-divider" aria-hidden="true">|</span>
+          <a href="#" class="footer-link">이용약관</a>
+          <span class="footer-divider" aria-hidden="true">|</span>
+          <a href="#" class="footer-link">사이트맵</a>
+        </nav>
+      </div>
+
+      <!-- 주소 + 인증 로고 -->
+      <div class="address-container">
+        <address class="address-info">
+          <p>우 30609 세종특별자치시 한누리대로 402</p>
+          <p>TEL: 044-690-9114 | FAX: 044-690-9009</p>
+        </address>
+        <div class="cert-logos" aria-label="웹 인증 마크">
+          <!-- WA 인증 마크 -->
+          <div class="cert-mark" title="한국형 웹 콘텐츠 접근성 지침 2.2 (KWCAG 2.2) 준수" aria-label="웹 접근성 인증 마크">
+            <span class="cert-text">WA</span>
+          </div>
+          <!-- 품질 인증 마크 -->
+          <div class="cert-mark cert-mark--quality" title="공공 웹사이트 품질 인증" aria-label="웹사이트 품질 인증 마크">
+            <span class="cert-text">품질</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 저작권 -->
+      <div class="copyright-info">
+        <p class="copyright-text">
+          COPYRIGHTⓒ National Institute of Korean Language ALL RIGHTS RESERVED.
+        </p>
+      </div>
+    </footer>
+    <!-- /섹션 5 END -->
+
+  </div><!-- /mobile-wrapper -->
+
+  <!-- 다운로드 팝업 모달 -->
+  <div id="download-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <h3 id="modal-title" class="modal-title">자료 다운로드</h3>
+      <p id="modal-desc" class="modal-desc">선택하신 자료를 다운로드하시겠습니까?</p>
+      <div class="modal-actions">
+        <button type="button" class="modal-btn modal-btn-cancel" id="modal-cancel">취소</button>
+        <button type="button" class="modal-btn modal-btn-confirm" id="modal-confirm">다운로드</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================
+       오프캔버스 전체 메뉴
+       ================================ -->
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true" tabindex="-1"></div>
+  <aside class="fullscreen-menu" id="fullscreen-menu" aria-hidden="true" aria-label="전체 메뉴">
+    <div class="menu-header">
+      <h2 class="menu-title">전체 메뉴</h2>
+      <button class="menu-close-btn" id="menu-close" aria-label="메뉴 닫기">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="menu-body">
+      <!-- 사전 그룹 -->
+      <div class="menu-group">
+        <h3 class="menu-group-title">국어 사전</h3>
+        <ul class="sidebar-nav">
+          <li><a href="#" class="sidebar-link">표준국어대사전</a></li>
+          <li><a href="#" class="sidebar-link">우리말샘</a></li>
+          <li><a href="#" class="sidebar-link">한국수어사전</a></li>
+        </ul>
+      </div>
+      
+      <!-- 자료실 그룹 -->
+      <div class="menu-group">
+        <h3 class="menu-group-title">자료실</h3>
+        <ul class="sidebar-nav">
+          <li><a href="search.html" class="sidebar-link">통합 자료 검색</a></li>
+          <li><a href="#" class="sidebar-link">어문 규범 검색</a></li>
+          <li><a href="#" class="sidebar-link">모두의 말뭉치</a></li>
+        </ul>
+      </div>
+      
+      <!-- 참여 그룹 -->
+      <div class="menu-group">
+        <h3 class="menu-group-title">소통·참여</h3>
+        <ul class="sidebar-nav">
+          <li><a href="#" class="sidebar-link">공지 및 새소식</a></li>
+          <li><a href="#" class="sidebar-link">온라인 가나다 (상담)</a></li>
+          <li><a href="#" class="sidebar-link">국어문화학교</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <script src="script.js"></script>
+  <script src="search.js"></script>
+</body>
+</html>
