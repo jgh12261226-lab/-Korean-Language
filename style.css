@@ -500,7 +500,7 @@ address { font-style: normal; }
 }
 .news-date {
   font-size: clamp(10px, 2.5vw, 13px);
-  font-weight: 300; color: rgba(0,11,22,0.5);
+  font-weight: 300; color: rgba(0,11,22,0.7);
 }
 
 .news-indicators {
@@ -610,7 +610,7 @@ address { font-style: normal; }
 .copyright-text {
   font-family: 'Pretendard', sans-serif;
   font-size: clamp(8px, 2vw, 11px);
-  font-weight: 200; color: rgba(0,11,22,0.5);
+  font-weight: 200; color: rgba(0,11,22,0.7);
   line-height: 1.6; word-break: keep-all;
 }
 
@@ -651,13 +651,16 @@ body.menu-open .menu-overlay {
   background: #FFFFFF;
   z-index: 1000;
   transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  visibility: hidden;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.4s;
   display: flex;
   flex-direction: column;
   box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
 }
 body.menu-open .fullscreen-menu {
   transform: translateX(0);
+  visibility: visible;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), visibility 0s;
 }
 
 .menu-header {

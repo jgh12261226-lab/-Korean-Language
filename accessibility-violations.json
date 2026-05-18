@@ -1,0 +1,305 @@
+[
+  {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "tags": [
+      "cat.name-role-value",
+      "wcag2a",
+      "wcag412",
+      "TTv5",
+      "TT6.a",
+      "EN-301-549",
+      "EN-9.4.1.2",
+      "RGAAv4",
+      "RGAA-10.8.1"
+    ],
+    "description": "Ensure aria-hidden elements are not focusable nor contain focusable elements",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/aria-hidden-focus?application=playwright",
+    "nodes": [
+      {
+        "any": [],
+        "all": [
+          {
+            "id": "focusable-disabled",
+            "data": null,
+            "relatedNodes": [
+              {
+                "html": "<button class=\"menu-close-btn\" id=\"menu-close\" aria-label=\"메뉴 닫기\">",
+                "target": [
+                  "#menu-close"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Focusable content should be disabled or be removed from the DOM"
+          },
+          {
+            "id": "focusable-not-tabbable",
+            "data": null,
+            "relatedNodes": [
+              {
+                "html": "<a href=\"#\" class=\"sidebar-link\">표준국어대사전</a>",
+                "target": [
+                  ".menu-group:nth-child(1) > .sidebar-nav > li:nth-child(1) > .sidebar-link[href=\"#\"]"
+                ]
+              },
+              {
+                "html": "<a href=\"#\" class=\"sidebar-link\">우리말샘</a>",
+                "target": [
+                  ".menu-group:nth-child(1) > .sidebar-nav > li:nth-child(2) > .sidebar-link[href=\"#\"]"
+                ]
+              },
+              {
+                "html": "<a href=\"#\" class=\"sidebar-link\">한국수어사전</a>",
+                "target": [
+                  ".menu-group:nth-child(1) > .sidebar-nav > li:nth-child(3) > .sidebar-link[href=\"#\"]"
+                ]
+              },
+              {
+                "html": "<a href=\"search.html\" class=\"sidebar-link\">통합 자료 검색</a>",
+                "target": [
+                  ".sidebar-link[href$=\"search.html\"]"
+                ]
+              },
+              {
+                "html": "<a href=\"#\" class=\"sidebar-link\">어문 규범 검색</a>",
+                "target": [
+                  ".menu-group:nth-child(2) > .sidebar-nav > li:nth-child(2) > .sidebar-link[href=\"#\"]"
+                ]
+              },
+              {
+                "html": "<a href=\"#\" class=\"sidebar-link\">모두의 말뭉치</a>",
+                "target": [
+                  ".menu-group:nth-child(2) > .sidebar-nav > li:nth-child(3) > .sidebar-link[href=\"#\"]"
+                ]
+              },
+              {
+                "html": "<a href=\"#\" class=\"sidebar-link\">공지 및 새소식</a>",
+                "target": [
+                  ".menu-group:nth-child(3) > .sidebar-nav > li:nth-child(1) > .sidebar-link[href=\"#\"]"
+                ]
+              },
+              {
+                "html": "<a href=\"#\" class=\"sidebar-link\">온라인 가나다 (상담)</a>",
+                "target": [
+                  ".menu-group:nth-child(3) > .sidebar-nav > li:nth-child(2) > .sidebar-link[href=\"#\"]"
+                ]
+              },
+              {
+                "html": "<a href=\"#\" class=\"sidebar-link\">국어문화학교</a>",
+                "target": [
+                  ".menu-group:nth-child(3) > .sidebar-nav > li:nth-child(3) > .sidebar-link[href=\"#\"]"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+          }
+        ],
+        "none": [],
+        "impact": "serious",
+        "html": "<aside class=\"fullscreen-menu\" id=\"fullscreen-menu\" aria-hidden=\"true\" aria-label=\"전체 메뉴\">",
+        "target": [
+          "#fullscreen-menu"
+        ],
+        "failureSummary": "Fix all of the following:\n  Focusable content should be disabled or be removed from the DOM\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+      }
+    ]
+  },
+  {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+      "cat.color",
+      "wcag2aa",
+      "wcag143",
+      "TTv5",
+      "TT13.c",
+      "EN-301-549",
+      "EN-9.1.4.3",
+      "ACT",
+      "RGAAv4",
+      "RGAA-3.2.1"
+    ],
+    "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+    "nodes": [
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#80858b",
+              "bgColor": "#ffffff",
+              "contrastRatio": 3.71,
+              "fontSize": "9.8pt (13px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<section class=\"news-scroll-section\" aria-labelledby=\"news-heading\">",
+                "target": [
+                  ".news-scroll-section"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 3.71 (foreground color: #80858b, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<span class=\"news-date\">2026.05.10</span>",
+        "target": [
+          ".active.news-slide[role=\"listitem\"] > .news-item[href=\"#\"]:nth-child(1) > .news-date"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.71 (foreground color: #80858b, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+      },
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#80858b",
+              "bgColor": "#ffffff",
+              "contrastRatio": 3.71,
+              "fontSize": "9.8pt (13px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<section class=\"news-scroll-section\" aria-labelledby=\"news-heading\">",
+                "target": [
+                  ".news-scroll-section"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 3.71 (foreground color: #80858b, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<span class=\"news-date\">2026.05.09</span>",
+        "target": [
+          ".active.news-slide[role=\"listitem\"] > .news-item[href=\"#\"]:nth-child(2) > .news-date"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.71 (foreground color: #80858b, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+      },
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#80858b",
+              "bgColor": "#ffffff",
+              "contrastRatio": 3.71,
+              "fontSize": "9.8pt (13px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<section class=\"news-scroll-section\" aria-labelledby=\"news-heading\">",
+                "target": [
+                  ".news-scroll-section"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 3.71 (foreground color: #80858b, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<span class=\"news-date\">2026.05.07</span>",
+        "target": [
+          ".active.news-slide[role=\"listitem\"] > .news-item[href=\"#\"]:nth-child(3) > .news-date"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.71 (foreground color: #80858b, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+      },
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#80858b",
+              "bgColor": "#ffffff",
+              "contrastRatio": 3.71,
+              "fontSize": "8.3pt (11px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<footer class=\"site-footer\" role=\"contentinfo\">",
+                "target": [
+                  "footer"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 3.71 (foreground color: #80858b, background color: #ffffff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<p class=\"copyright-text\">\n          COPYRIGHTⓒ National Institute of Korean Language ALL RIGHTS RESERVED.\n        </p>",
+        "target": [
+          ".copyright-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.71 (foreground color: #80858b, background color: #ffffff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+      }
+    ]
+  },
+  {
+    "id": "meta-viewport",
+    "impact": "moderate",
+    "tags": [
+      "cat.sensory-and-visual-cues",
+      "wcag2aa",
+      "wcag144",
+      "EN-301-549",
+      "EN-9.1.4.4",
+      "ACT",
+      "RGAAv4",
+      "RGAA-10.4.2"
+    ],
+    "description": "Ensure <meta name=\"viewport\"> does not disable text scaling and zooming",
+    "help": "Zooming and scaling must not be disabled",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/meta-viewport?application=playwright",
+    "nodes": [
+      {
+        "any": [
+          {
+            "id": "meta-viewport",
+            "data": "maximum-scale",
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "maximum-scale on <meta> tag disables zooming on mobile devices"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0\">",
+        "target": [
+          "meta[name=\"viewport\"]"
+        ],
+        "failureSummary": "Fix any of the following:\n  maximum-scale on <meta> tag disables zooming on mobile devices"
+      }
+    ]
+  }
+]
