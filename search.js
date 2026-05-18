@@ -338,11 +338,41 @@
   }
 
   if (modalCancel) modalCancel.addEventListener('click', closeModal);
+
+  const downloadCompleteModal = document.getElementById('download-complete-modal');
+  const modalCompleteClose = document.getElementById('modal-complete-close');
+
+  function openCompleteModal() {
+    if (downloadCompleteModal) {
+      downloadCompleteModal.classList.add('is-active');
+      downloadCompleteModal.setAttribute('aria-hidden', 'false');
+      if (modalCompleteClose) modalCompleteClose.focus();
+    }
+  }
+
+  function closeCompleteModal() {
+    if (downloadCompleteModal) {
+      downloadCompleteModal.classList.remove('is-active');
+      downloadCompleteModal.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  if (modalCompleteClose) modalCompleteClose.addEventListener('click', closeCompleteModal);
+
+  if (downloadCompleteModal) {
+    downloadCompleteModal.addEventListener('click', function(e) {
+      if (e.target === downloadCompleteModal) {
+        closeCompleteModal();
+      }
+    });
+  }
+
   if (modalConfirm) {
     modalConfirm.addEventListener('click', function() {
-      // 실제 다운로드 로직 (여기서는 alert로 대체)
-      alert('다운로드가 완료되었습니다.');
+      // 실제 다운로드 로직 수행 (여기서는 모달 전환으로 시뮬레이션)
       closeModal();
+      // 약간의 지연 후 완료 모달 띄우기 (자연스러운 UX)
+      setTimeout(openCompleteModal, 150);
     });
   }
 
